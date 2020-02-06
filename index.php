@@ -86,7 +86,7 @@
         </div>
         <div class="box-body">
           <div class="chart">
-            <canvas id="queryOverTimeChart" width="800" height="140"></canvas>
+            <canvas id="queryOverTimeChart" width="800" height="180"></canvas>
           </div>
         </div>
         <div class="overlay">
@@ -111,7 +111,7 @@
         </div>
         <div class="box-body">
           <div class="chart">
-            <canvas id="clientsChart" width="800" height="140" class="extratooltipcanvas"></canvas>
+            <canvas id="clientsChart" width="800" height="180" class="extratooltipcanvas"></canvas>
           </div>
         </div>
         <div class="overlay">

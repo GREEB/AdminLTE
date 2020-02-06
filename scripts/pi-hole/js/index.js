@@ -6,6 +6,40 @@
 *  Please see LICENSE file for your rights under this license. */
 // Define global variables
 /* global Chart */
+//
+var el = document.querySelector('.logo-lg').parentElement
+el.href = "/admin1";
+el.setAttribute('target','_self');
+
+//
+//
+//
+var el = document.querySelector(".info>a:last-of-type");
+var ram = parseFloat(document.querySelector(".info>a:last-of-type").innerText.replace( /^\D+/g, ''))
+el.innerHTML = `<i class="fa fa-circle" style="color:#7FFF00"></i> ${ram} %`
+//
+//
+//
+//
+//PERCENTAGE BLOCKED BAR
+//
+//
+//
+$( document ).ready(function() {
+    setTimeout(function(){
+        var percentage = document.querySelector('#ads_percentage_today').textContent;
+        var ads_bar = document.querySelector('#ads_percentage_today').parentElement.parentElement;
+        var span = document.createElement("span");
+        span.setAttribute('class', 'progressbar');
+        span.setAttribute('style', 'width:' + percentage);
+        ads_bar.appendChild(span);
+    }, 1000)
+})
+//
+//
+//
+// END PERCENTAGE BLOCKED BAR
+
 var timeLineChart, queryTypeChart, forwardDestinationChart;
 var queryTypePieChart, forwardDestinationPieChart, clientsChart;
 
@@ -614,7 +648,7 @@ function updateTopLists() {
         setTimeout(updateTopLists, 10000);
     });
 }
-
+var count;
 var FTLoffline = false;
 function updateSummaryData(runOnce) {
     var setTimer = function(timeInSeconds) {
@@ -667,6 +701,34 @@ function updateSummaryData(runOnce) {
             $("#total_queries").prop("title", "only A + AAAA queries (" + data["dns_queries_all_types"] + " in total)");
         }
 
+        //QPS Prototype
+        //
+        //
+        //
+        var qps = document.querySelector('.navbar-static-top .qps');
+        if (count){
+            var diff = parseFloat(data["dns_queries_all_types"].replace(/,/g, '')) - count;
+            var el = document.querySelector('.navbar-static-top');
+
+            if (qps){
+                    qps.innerText = `${diff} QPS`;
+            }else{
+                var c = document.createElement('div');
+                c.setAttribute('class', 'qpscontainer')
+                var span = document.createElement('span');
+                span.setAttribute('class', 'qps');
+                c.appendChild(span);
+                el.appendChild(c);
+            }
+            count = 0;
+
+        }
+        count = parseFloat(data["dns_queries_all_types"].replace(/,/g, ''));
+        //
+        //
+        //
+        //QPS Prototype END
+
         window.setTimeout(function() {
             ["ads_blocked_today", "dns_queries_today", "domains_being_blocked", "ads_percentage_today", "unique_clients"].forEach(function(header, idx) {
                 var textData = (idx === 3 && data[header] !== "to") ? data[header] + "%" : data[header];
@@ -688,7 +750,22 @@ function updateSummaryData(runOnce) {
         setTimer(300);
     });
 }
-
+//
+//
+//
+function createG(ctx, color){
+    var gradColor = color.split(',');
+    gradColor.pop();
+    var rgb = gradColor.toString();
+    var gradient = ctx.createLinearGradient(0, 0, 0, 400);
+    gradient.addColorStop(0, rgb + ',1)');   
+    gradient.addColorStop(0.45, rgb + ',0.1)');
+    gradient.addColorStop(1, rgb + ',0)');
+    return gradient;
+}
+//
+//
+//
 $(document).ready(function() {
 
     var isMobile = {
@@ -713,35 +790,36 @@ $(document).ready(function() {
 
     updateSummaryData();
 
+    var animate = false;
     var ctx = document.getElementById("queryOverTimeChart").getContext("2d");
     timeLineChart = new Chart(ctx, {
-        type: "line",
+        type: 'line',
         data: {
             labels: [],
             datasets: [
                 {
-                    label: "Total DNS Queries",
+                    label: "All Queries",
                     fill: true,
-                    backgroundColor: "rgba(220,220,220,0.5)",
-                    borderColor: "rgba(0, 166, 90,.8)",
-                    pointBorderColor: "rgba(0, 166, 90,.8)",
+                    backgroundColor: createG(ctx, "rgba(97,217,213,.8)"),
+                    borderColor: "rgba(97,217,213,.8)",
+                    pointBorderColor: "rgba(97,217,213,.8)",
                     pointRadius: 1,
                     pointHoverRadius: 5,
                     data: [],
-                    pointHitRadius: 5,
-                    cubicInterpolationMode: "monotone"
+                    pointHitRadius: 20,
+                    cubicInterpolationMode: 'monotone'
                 },
                 {
-                    label: "Blocked DNS Queries",
+                    label: "Ad Queries",
                     fill: true,
-                    backgroundColor: "rgba(0,192,239,0.5)",
-                    borderColor: "rgba(0,192,239,1)",
-                    pointBorderColor: "rgba(0,192,239,1)",
+                    backgroundColor: createG(ctx, "rgba(237,124,134,1)"),
+                    borderColor: "rgba(237,124,134,.8)",
+                    pointBorderColor: "rgba(237,124,134,.8)",
                     pointRadius: 1,
                     pointHoverRadius: 5,
                     data: [],
-                    pointHitRadius: 5,
-                    cubicInterpolationMode: "monotone"
+                    pointHitRadius: 20,
+                    cubicInterpolationMode: 'monotone'
                 }
             ]
         },
@@ -782,6 +860,9 @@ $(document).ready(function() {
                 display: false
             },
             scales: {
+                gridLines:[{
+                    color: 'rgba(255, 0, 266, 0.1)'
+                }],
                 xAxes: [{
                     type: "time",
                     time: {
@@ -790,11 +871,15 @@ $(document).ready(function() {
                             hour: "HH:mm"
                         },
                         tooltipFormat: "HH:mm"
+                    },
+                    ticks: {
+                        fontColor:'#878788',
                     }
                 }],
                 yAxes: [{
                     ticks: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        fontColor:'#878788',
                     }
                 }]
             },
