@@ -146,38 +146,47 @@ function updateQueriesOverTime() {
         timeLineChart.update();
     });
 }
-
+function createG(ctx, color){
+    var gradColor = color.split(',');
+    gradColor.pop();
+    var rgb = gradColor.toString();
+    var gradient = ctx.createLinearGradient(0, 0, 0, 400);
+    gradient.addColorStop(0, rgb + ',1)');   
+    gradient.addColorStop(0.45, rgb + ',0.1)');
+    gradient.addColorStop(1, rgb + ',0)');
+    return gradient;
+}
 /* global Chart */
 $(document).ready(function() {
     var ctx = document.getElementById("queryOverTimeChart").getContext("2d");
     timeLineChart = new Chart(ctx, {
         type: "line",
         data: {
-            labels: [ 0 ],
+            labels: [],
             datasets: [
                 {
-                    label: "Total DNS Queries",
+                    label: "All Queries",
                     fill: true,
-                    backgroundColor: "rgba(220,220,220,0.5)",
-                    borderColor: "rgba(0, 166, 90,.8)",
-                    pointBorderColor: "rgba(0, 166, 90,.8)",
+                    backgroundColor: createG(ctx, "rgba(97,217,213,.8)"),
+                    borderColor: "rgba(97,217,213,.8)",
+                    pointBorderColor: "rgba(97,217,213,.8)",
                     pointRadius: 1,
                     pointHoverRadius: 5,
                     data: [],
-                    pointHitRadius: 5,
-                    cubicInterpolationMode: "monotone"
+                    pointHitRadius: 20,
+                    cubicInterpolationMode: 'monotone'
                 },
                 {
-                    label: "Blocked DNS Queries",
+                    label: "Ad Queries",
                     fill: true,
-                    backgroundColor: "rgba(0,192,239,0.5)",
-                    borderColor: "rgba(0,192,239,1)",
-                    pointBorderColor: "rgba(0,192,239,1)",
+                    backgroundColor: createG(ctx, "rgba(237,124,134,1)"),
+                    borderColor: "rgba(237,124,134,.8)",
+                    pointBorderColor: "rgba(237,124,134,.8)",
                     pointRadius: 1,
                     pointHoverRadius: 5,
                     data: [],
-                    pointHitRadius: 5,
-                    cubicInterpolationMode: "monotone"
+                    pointHitRadius: 20,
+                    cubicInterpolationMode: 'monotone'
                 }
             ]
         },

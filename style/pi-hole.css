@@ -5,11 +5,123 @@
 *  This file is copyright under the latest version of the EUPL.
 *  Please see LICENSE file for your rights under this license. */
 body {
-    color: #fff !important;
+    color: #fff !important
 }
 
-td[style="color: rgb(0, 0, 0);"] {
-    color: #a2a2a2 !important;
+.btn-default:hover,
+.btn-default:active,
+.btn-default.hover {
+    background-color: #36373c
+}
+
+h1 {
+    font-size: 1em
+}
+
+.pagination>li>a,
+.pagination>li>span {
+    position: relative;
+    float: left;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #ffffe5;
+    text-decoration: none;
+    background-color: #201e20;
+    border: 1px solid #36373c;
+    padding: 6px 12px
+}
+
+.list-group-item {
+    position: relative;
+    display: block;
+    margin-bottom: -1px;
+    background-color: #201e20;
+    border: 1px solid #36373c;
+    padding: 10px 15px
+}
+
+pre {
+    display: block;
+    font-size: 13px;
+    line-height: 1.42857143;
+    color: #fff;
+    word-break: break-all;
+    word-wrap: break-word;
+    background-color: #201e20;
+    border: 1px solid #36373c;
+    border-radius: 4px;
+    margin: 0 0 10px;
+    padding: 9.5px
+}
+
+.btn-default {
+    background-color: #2c2d31;
+    color: #fff;
+    border-color: #36373c
+}
+
+.btn-default:hover {
+    color: #fff;
+    background-color: #2c2d31;
+    border-color: #36373c
+}
+
+.page-header {
+    padding-bottom: 9px;
+    border-bottom: 1px solid #36373c;
+    margin: 40px 0 20px
+}
+
+.pagination>li>a:focus,
+.pagination>li>a:hover,
+.pagination>li>span:focus,
+.pagination>li>span:hover {
+    z-index: 2;
+    color: #fff;
+    background-color: #36373c;
+    border-color: #36373c
+}
+
+.panel {
+    margin-bottom: 20px;
+    background-color: #2c2d31;
+    border: 1px solid #36373c;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    border-color: #36373c
+}
+
+.daterangepicker {
+    background-color: #201e20;
+    border: 1px solid #2c2d31
+}
+
+.daterangepicker::before {
+    top: -7px;
+    border-right: 7px solid transparent;
+    border-left: 7px solid transparent;
+    border-bottom: 7px solid #36373c
+}
+
+.daterangepicker .ranges li:hover {
+    background-color: #2c2d31
+}
+
+.daterangepicker .ranges li.active {
+    background-color: #2c2d31;
+    color: #fff
+}
+
+.daterangepicker::after {
+    top: -6px;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid #201e20;
+    border-left: 6px solid transparent
+}
+
+td[style="color: rgb(0,0,0);"] {
+    color: #a2a2a2 !important
 }
 
 .pagination>.disabled>a,
@@ -18,13 +130,10 @@ td[style="color: rgb(0, 0, 0);"] {
 .pagination>.disabled>span,
 .pagination>.disabled>span:focus,
 .pagination>.disabled>span:hover {
-    color:
-        #777;
+    color: #777;
     cursor: not-allowed;
-    background-color:
-        #2c2d31;
-    border-color:
-        #36373c;
+    background-color: #2c2d31;
+    border-color: #36373c
 }
 
 .pagination>.active>a,
@@ -33,102 +142,77 @@ td[style="color: rgb(0, 0, 0);"] {
 .pagination>.active>span,
 .pagination>.active>span:focus,
 .pagination>.active>span:hover {
-
     z-index: 3;
-    color:
-
-        #fff;
-
+    color: #fff;
     cursor: default;
-
-    background-color:
-        #303135;
-
-    border-color:
-
-        #36373c;
-
+    background-color: #303135;
+    border-color: #36373c
 }
 
 tbody button {
-    color:
-        red;
-
+    color: red;
     white-space: nowrap;
-
     border-radius: 10px;
-
     border: 2px solid #2c2d31;
-
-    padding: .25em 1em;
-
-    background:
-        #36373c;
+    background: #36373c;
     opacity: .5;
+    padding: .25em 1em
 }
 
 tbody button:hover {
-    opacity: 1;
+    opacity: 1
 }
 
 .table-striped>tbody>tr:nth-of-type(2n+1) {
-    background-color:
-        #303135;
+    background-color: #303135
 }
 
-tr[style="color: rgb(0, 128, 0);"] {
-    color: rgb(40, 199, 111) !important;
+tr[style="color: rgb(0,128,0);"] {
+    color: #28c76f !important
 }
 
-tr[style="color: rgb(255, 0, 0);"] {
-    color: #ed8080 !important;
+tr[style="color: rgb(255,0,0);"] {
+    color: #ed8080 !important
 }
 
 .progress {
-    background: #191819;
+    background: #191819
 }
 
 .info>a:last-of-type .fa-circle::before {
-    content: "\f538" !important;
+    content: "\f538" !important
 }
 
 .info>a:first-of-type .fa-circle::before {
-    content: "\f796" !important;
+    content: "\f796" !important
 }
 
 .info>a[title] .fa-circle::before {
-    content: "\f2db" !important;
-
+    content: "\f2db" !important
 }
 
 .info #temperature .fa-fire[style="color:#FF0000"] {
-    color: rgb(226, 77, 194) !important;
+    color: #e24dc2 !important
 }
 
 .info #temperature .fa-fire[style="color:#3366FF"] {
-    color: #4DC7E2 !important;
+    color: #4DC7E2 !important
 }
 
-.info>a>i[style="color:#FF0000"] {}
-
 .info>a>i.fa-circle {
-    color: #28C76F !important;
+    color: #28C76F !important
 }
 
 .qps {
-    font-family: 'lato', sans-serif;
+    font-family: lato, sans-serif;
     font-size: 1em;
-    font-weight: bold;
+    font-weight: 700;
     left: 2em;
     color: #b8c7ce;
     -webkit-user-select: none;
-    /* Safari */
     -moz-user-select: none;
-    /* Firefox */
     -ms-user-select: none;
-    /* IE10+/Edge */
-    user-select: none;
-    /* Standard */
+    user-select: none
 }
 
 .qpscontainer {
@@ -233,7 +317,7 @@ tr[style="color: rgb(255, 0, 0);"] {
 }
 
 .skin-blue .list-group-item:hover {
-    background: #ddd;
+    background: #2c2d31;
 }
 
 @-webkit-keyframes Pulse {

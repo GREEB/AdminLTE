@@ -1438,7 +1438,8 @@ a:focus {
 .form-control {
     background:#2c2d31; 
     color:#fff;
-    border: 2px solid #28c76f8c;;
+    border:none;
+    border-bottom: 2px solid #28c76f8c;;
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
@@ -1500,8 +1501,10 @@ a:focus {
 
 .input-group .input-group-addon {
     border-radius: 0;
-    border-color: #d2d6de;
-    background-color: #fff
+    border-color:
+    #36373c;
+    background-color:
+    #2c2d31;
 }
 
 .btn-group-vertical .btn.btn-flat:first-of-type,
@@ -2924,8 +2927,10 @@ a:focus {
 }
 
 .pagination>li>a {
-    background: #fafafa;
-    color: #666
+    background:
+    #2c2d31;
+    color:
+    #666;
 }
 
 .pagination.pagination-flat>li>a {
