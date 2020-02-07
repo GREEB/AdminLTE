@@ -17,7 +17,31 @@ body {
 h1 {
     font-size: 1em
 }
-
+.box-title{
+    margin-left: 1em !important;
+}
+.box-title::after{
+    content: "\f142";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color:
+    #9c9c9d;
+    position: absolute;
+    left: 2.2em;
+    font-size: 12px;
+    top: 1.9em;
+}
+.box-title::before{
+    content: "\f142";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color:
+    #9c9c9d;
+    position: absolute;
+    left: 1.8em;
+    font-size: 12px;
+    top: 1.9em;
+}
 .pagination>li>a,
 .pagination>li>span {
     position: relative;

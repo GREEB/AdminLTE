@@ -825,6 +825,14 @@ $(document).ready(function() {
         },
         options: {
             tooltips: {
+                backgroundColor: "#201e20",
+                bodyFontColor: "#9c9c9d",
+                bodyFontFamily: "lato, sans-serif",
+                bodyFontSize: 12,
+                titleFontSize: 14,
+                titleFontColor: "#fff",
+                xPadding: 10,
+                yPadding: 10,
                 enabled: true,
                 mode: "x-axis",
                 callbacks: {
@@ -873,14 +881,25 @@ $(document).ready(function() {
                         tooltipFormat: "HH:mm"
                     },
                     ticks: {
-                        fontColor:'#878788',
-                    }
+                        fontColor:'#9c9c9d',
+                        fontFamily: "lato, sans-serif",
+                        fontSize: 14
+                    },
+                    gridLines: {
+                        color: "#36373c"
+                    },
                 }],
                 yAxes: [{
                     ticks: {
+                        maxTicksLimit: 5,
                         beginAtZero: true,
-                        fontColor:'#878788',
-                    }
+                        fontColor:'#9c9c9d',
+                        fontFamily: "lato, sans-serif",
+                        fontSize: 14
+                    },
+                    gridLines: {
+                        color: "#36373c"
+                    },
                 }]
             },
             maintainAspectRatio: false
