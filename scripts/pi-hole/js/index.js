@@ -29,17 +29,44 @@ $( document ).ready(function() {
     setTimeout(function(){
         var percentage = document.querySelector('#ads_percentage_today').textContent;
         var ads_bar = document.querySelector('#ads_percentage_today').parentElement.parentElement;
+        var container = document.createElement('div');
+        container.setAttribute('class', 'percentage-container')
         var span = document.createElement("span");
         span.setAttribute('class', 'progressbar');
         span.setAttribute('style', 'width:' + percentage);
-        ads_bar.appendChild(span);
+        container.appendChild(span);
+        ads_bar.appendChild(container);
     }, 1000)
 })
 //
 //
 //
 // END PERCENTAGE BLOCKED BAR
-
+//
+//
+//
+function createG(ctx, color){
+    if (!color){color = "rgba(0,0,0,0)"}
+    var gradColor = color.split(',');
+    gradColor.pop();
+    var rgb = gradColor.toString();
+    var gradient = ctx.createLinearGradient(0, 0, 0, 400);
+    gradient.addColorStop(0, rgb + ',1)');   
+    gradient.addColorStop(0.45, rgb + ',0.1)');
+    gradient.addColorStop(1, rgb + ',0)');
+    return gradient;
+}
+//
+//
+//
+function buildRGBA(color, opacity){
+    var c = color.split(',');
+    c.pop();
+    return `${c.toString()},${opacity})`;
+}
+//
+//
+//
 var timeLineChart, queryTypeChart, forwardDestinationChart;
 var queryTypePieChart, forwardDestinationPieChart, clientsChart;
 
@@ -347,16 +374,24 @@ function updateClientsOverTime() {
         clientsChart.data.datasets[0].pointHitRadius = 5;
         clientsChart.data.datasets[0].pointHoverRadius = 5;
         clientsChart.data.datasets[0].label = labels[0];
-
         for (i = clientsChart.data.datasets.length; plotdata.length && i < plotdata[0].length; i++)
         {
             clientsChart.data.datasets.push({
                 data: [],
                 // If we ran out of colors, make a random one
-                backgroundColor: i < colors.length
-                    ? colors[i]
-                    : "#" + parseInt("" + Math.random() * 0xffffff, 10).toString(16).padStart(6, "0"),
+                // backgroundColor: i < colors.length
+                //     ? colors[i]
+                //     : "#" + parseInt("" + Math.random() * 0xffffff, 10).toString(16).padStart(6, "0"),
                 pointRadius: 0,
+                backgroundColor: i < colors.length
+                    ? createG(document.getElementById("clientsChart").getContext("2d"), colors[i])
+                    : createG(document.getElementById("clientsChart").getContext("2d"), "rgba(0,0,0,0)"),
+                borderColor: i < colors.length
+                    ? buildRGBA(colors[i], 0.8)
+                    : "rgba(0,0,0,0)",
+                pointBorderColor: i < colors.length
+                    ? buildRGBA(colors[i], 0.8)
+                    : "rgba(0,0,0,0)",
                 pointHitRadius: 5,
                 pointHoverRadius: 5,
                 label: labels[i],
@@ -750,22 +785,7 @@ function updateSummaryData(runOnce) {
         setTimer(300);
     });
 }
-//
-//
-//
-function createG(ctx, color){
-    var gradColor = color.split(',');
-    gradColor.pop();
-    var rgb = gradColor.toString();
-    var gradient = ctx.createLinearGradient(0, 0, 0, 400);
-    gradient.addColorStop(0, rgb + ',1)');   
-    gradient.addColorStop(0.45, rgb + ',0.1)');
-    gradient.addColorStop(1, rgb + ',0)');
-    return gradient;
-}
-//
-//
-//
+
 $(document).ready(function() {
 
     var isMobile = {
@@ -985,9 +1005,17 @@ $(document).ready(function() {
             },
             options: {
                 tooltips: {
-                    enabled: false,
+                    backgroundColor: "#201e20",
+                    bodyFontColor: "#9c9c9d",
+                    bodyFontFamily: "lato, sans-serif",
+                    bodyFontSize: 12,
+                    titleFontSize: 14,
+                    titleFontColor: "#fff",
+                    xPadding: 10,
+                    yPadding: 10,
+                    enabled: true,
                     mode: "x-axis",
-                    custom: customTooltips,
+                    //custom: customTooltips,
                     itemSort: function(a, b) {
                         return b.yLabel - a.yLabel;
                     },
@@ -1022,7 +1050,11 @@ $(document).ready(function() {
                     }],
                     yAxes: [{
                         ticks: {
-                            beginAtZero: true
+                            maxTicksLimit: 5,
+                            beginAtZero: true,
+                            fontColor:'#9c9c9d',
+                            fontFamily: "lato, sans-serif",
+                            fontSize: 14
                         },
                         stacked: true
                     }]

@@ -27,9 +27,9 @@ h1 {
     color:
     #9c9c9d;
     position: absolute;
-    left: 2.2em;
+    left: 2.3em;
     font-size: 12px;
-    top: 1.9em;
+    top: 2em;
 }
 .box-title::before{
     content: "\f142";
@@ -40,7 +40,7 @@ h1 {
     position: absolute;
     left: 1.8em;
     font-size: 12px;
-    top: 1.9em;
+    top: 2em;
 }
 .pagination>li>a,
 .pagination>li>span {
@@ -249,8 +249,11 @@ tr[style="color: rgb(255,0,0);"] {
     height: 4em;
     padding: 1.25em;
 }
-
-.progressbar {
+.percentage-container{
+    position: absolute;
+    width: 100%;
+}
+.percentage-container .progressbar {
     width: 10%;
     height: 20px;
     display: block;
@@ -260,7 +263,7 @@ tr[style="color: rgb(255,0,0);"] {
 
 }
 
-.progressbar::after {
+.percentage-container .progressbar::after {
     content: "";
     height: 7px;
     display: block;
